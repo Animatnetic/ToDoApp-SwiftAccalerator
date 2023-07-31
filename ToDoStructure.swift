@@ -11,5 +11,5 @@ struct ToDo: Identifiable {
     var id: UUID = UUID()
     
     var title: String
-    var isCompleted: Bool
+    var isCompleted: Bool = false
 }
