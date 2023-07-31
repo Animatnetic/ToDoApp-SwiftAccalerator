@@ -8,6 +8,8 @@
 import Foundation
 
 struct ToDo: Identifiable {
-    var id: Int = Int.random(in: 0...100)
-    var
+    var id: UUID = UUID()
+    
+    var title: String
+    var isCompleted: Bool
 }
