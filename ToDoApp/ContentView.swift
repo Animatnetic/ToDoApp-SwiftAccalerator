@@ -19,7 +19,7 @@ struct ContentView: View {
         ZStack {
             VStack {
                 NavigationStack {
-                    List(tasks) { task in
+                    List($tasks) { $task in
                         HStack {
                             Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
                             
@@ -27,7 +27,9 @@ struct ContentView: View {
                         }
                         .strikethrough(task.isCompleted)
                         .onTapGesture {
-//                            task.isCompleted = !task.isCompleted
+                            withAnimation {
+                                task.isCompleted.toggle()
+                            }
                         }
                     }
                     .navigationTitle("To Do:")
