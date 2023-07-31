@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @State private var tasks: [ToDo] = [
         ToDo(title: "Feed the cats", isCompleted: true),
-        ToDo(title: "Feed the horses"),
+        ToDo(title: "Feed the horses", subtitle: "twice a day"),
         ToDo(title: "Finish Swift Accelerator Programme Class"),
         ToDo(title: "Finish the tasks")
     ]
@@ -23,9 +23,17 @@ struct ContentView: View {
                         HStack {
                             Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
                             
-                            Text("\(task.title)")
+                            VStack(alignment: .leading) {
+                                Text("\(task.title)")
+                                
+                                if task.subtitle != "" {
+                                    Text("\(task.subtitle)")
+                                        .font(.caption)
+                                        .foregroundColor(.gray)
+                                }
+                            }
+                            .strikethrough(task.isCompleted)
                         }
-                        .strikethrough(task.isCompleted)
                         .onTapGesture {
                             withAnimation {
                                 task.isCompleted.toggle()
