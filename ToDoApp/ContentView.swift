@@ -19,28 +19,38 @@ struct ContentView: View {
         ZStack {
             VStack {
                 NavigationStack {
-                    List($tasks) { $task in
-                        HStack {
-                            Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
-                            
-                            VStack(alignment: .leading) {
-                                Text("\(task.title)")
+                    List($tasks, editActions: [.all]) { $task in
+                        NavigationLink {
+                            ToDoDetailedView(todo: $task)
+                        } label: {
+                            HStack {
                                 
-                                if task.subtitle != "" {
-                                    Text("\(task.subtitle)")
-                                        .font(.caption)
-                                        .foregroundColor(.gray)
+                                Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
+                                
+                                VStack(alignment: .leading) {
+                                    Text("\(task.title)")
+                                    
+                                    if task.subtitle != "" {
+                                        Text("\(task.subtitle)")
+                                            .font(.caption)
+                                            .foregroundColor(.gray)
+                                    }
                                 }
+                                .strikethrough(task.isCompleted)
                             }
-                            .strikethrough(task.isCompleted)
-                        }
-                        .onTapGesture {
-                            withAnimation {
-                                task.isCompleted.toggle()
+                            .onTapGesture {
+                                withAnimation {
+                                    task.isCompleted.toggle()
+                                }
                             }
                         }
                     }
                     .navigationTitle("To Do:")
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            EditButton()
+                        }
+                    }
                 }
             }
         }
