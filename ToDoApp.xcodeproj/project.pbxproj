@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B510B18B2A80BFDA00DFE113 /* ToDoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B510B18A2A80BFDA00DFE113 /* ToDoView.swift */; };
 		B51C68CB2A7788F100160153 /* ToDoAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51C68CA2A7788F100160153 /* ToDoAppApp.swift */; };
 		B51C68CD2A7788F100160153 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51C68CC2A7788F100160153 /* ContentView.swift */; };
 		B51C68CF2A7788F200160153 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B51C68CE2A7788F200160153 /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B510B18A2A80BFDA00DFE113 /* ToDoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoView.swift; sourceTree = "<group>"; };
 		B51C68C72A7788F100160153 /* ToDoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B51C68CA2A7788F100160153 /* ToDoAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoAppApp.swift; sourceTree = "<group>"; };
 		B51C68CC2A7788F100160153 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				B51C68CC2A7788F100160153 /* ContentView.swift */,
 				B5A55A262A78F4D5009F248C /* NewToDoView.swift */,
 				B5D175E02A779C77005082F2 /* ToDoDetailedView.swift */,
+				B510B18A2A80BFDA00DFE113 /* ToDoView.swift */,
 			);
 			path = ToDoViews;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				B5D175DF2A778C86005082F2 /* ToDoStructure.swift in Sources */,
 				B51C68CD2A7788F100160153 /* ContentView.swift in Sources */,
 				B5D175E12A779C77005082F2 /* ToDoDetailedView.swift in Sources */,
+				B510B18B2A80BFDA00DFE113 /* ToDoView.swift in Sources */,
 				B51C68CB2A7788F100160153 /* ToDoAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
