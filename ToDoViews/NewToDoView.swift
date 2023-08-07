@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct NewToDoView: View {
-    var showAddSheet = false
+    @Binding var toDosArray: [ToDo]
     
     @State private var toDoTitle = ""
     @State private var inputtedSubtitle = ""
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         ZStack {
@@ -19,16 +20,23 @@ struct NewToDoView: View {
                 Form {
                     Section("Info") {
                         TextField("Title", text: $toDoTitle)
+                            .fontWeight(.heavy)
                         TextField("Subtitle", text: $inputtedSubtitle)
                     }
                     
                     Section("Actions") {
                         Button("Save") {
+                            let newTodo = ToDo(title: toDoTitle, subtitle: inputtedSubtitle)
                             
+                            if newTodo.title != "" {
+                                toDosArray.append(newTodo)
+                            }
+                        
+                            dismiss()
                         }
                         
                         Button("Cancel", role: .destructive) {
-                            
+                            dismiss()
                         }
                     }
                 }
@@ -39,6 +47,6 @@ struct NewToDoView: View {
 
 struct NewToDoView_Previews: PreviewProvider {
     static var previews: some View {
-        NewToDoView(showAddSheet: true)
+        NewToDoView(toDosArray: .constant([]))
     }
 }

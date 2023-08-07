@@ -15,10 +15,12 @@ struct ContentView: View {
         ToDo(title: "Finish the tasks")
     ]
     
+    @State private var showAddSheet = false
+    
     var body: some View {
         ZStack {
             VStack {
-                NavigationStack {
+                NavigationStack {   
                     List($tasks, editActions: [.all]) { $task in
                         NavigationLink {
                             ToDoDetailedView(todo: $task)
@@ -50,8 +52,19 @@ struct ContentView: View {
                         ToolbarItem(placement: .navigationBarLeading) {
                             EditButton()
                         }
+                        
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Button {
+                                showAddSheet = true
+                            } label: {
+                                Image(systemName: "plus")
+                                    .foregroundColor(.blue)
+                            }
+                        }
                     }
                 }
+            }.sheet(isPresented: $showAddSheet) {
+                NewToDoView(toDosArray: $tasks)
             }
         }
     }
