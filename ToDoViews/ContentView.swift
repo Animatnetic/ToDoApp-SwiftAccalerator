@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var tasks: [ToDo] = [
-        ToDo(title: "Feed the cats", isCompleted: true),
-        ToDo(title: "Feed the horses", subtitle: "twice a day"),
-        ToDo(title: "Finish Swift Accelerator Programme Class"),
-        ToDo(title: "Finish the tasks")
-    ]
+    @StateObject var todoManager = TodoManager()
+    
+//    @State private var tasks: [ToDo] = [
+//        ToDo(title: "Feed the cats", isCompleted: true),
+//        ToDo(title: "Feed the horses", subtitle: "twice a day"),
+//        ToDo(title: "Finish Swift Accelerator Programme Class"),
+//        ToDo(title: "Finish the tasks")
+//    ]
     
     @State private var showAddSheet = false
     
@@ -21,7 +23,7 @@ struct ContentView: View {
         ZStack {
             VStack {
                 NavigationStack {
-                    List($tasks, editActions: [.all]) { $task in
+                    List($todoManager.todos, editActions: [.all]) { $task in
                             ToDoView(toDo: $task)
                         }
                         .navigationTitle("To Do:")
@@ -41,7 +43,7 @@ struct ContentView: View {
                         }
                     }
                 }.sheet(isPresented: $showAddSheet) {
-                    NewToDoView(toDosArray: $tasks)
+                    NewToDoView(toDosArray: $todoManager.todos)
             }
         }
     }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ToDo: Identifiable {
+struct ToDo: Identifiable, Codable { // Making it codable allows it to be encoded or decoded to external file encodings
     var id: UUID = UUID()
     
     var title: String
