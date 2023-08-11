@@ -15,51 +15,17 @@ struct ContentView: View {
 //        ToDo(title: "Finish Swift Accelerator Programme Class"),
 //        ToDo(title: "Finish the tasks")
 //    ]
-    
-    @State private var showAddSheet = false
-    @State private var showConfirmAlert = false
-    
     var body: some View {
-        ZStack {
-            VStack {
-                NavigationStack {
-                    List($todoManager.todos, editActions: [.all]) { $task in
-                            ToDoView(toDo: $task)
-                        }
-                        .navigationTitle("To Do:")
-                        .toolbar {
-                            ToolbarItem(placement: .navigationBarLeading) {
-                                EditButton()
-                            }
-                            
-                            ToolbarItemGroup(placement: .navigationBarTrailing) {
-                                
-                                #if DEBUG
-                                Button {
-                                    showConfirmAlert = true
-                                } label: {
-                                    Image(systemName: "list.bullet.clipboard.fill")
-                                }
-                                #endif
-                                
-                                Button {
-                                    showAddSheet = true
-                                } label: {
-                                    Image(systemName: "plus")
-                                        .foregroundColor(.blue)
-                                }
-                            }
-                        }
-                    }
+        TabView {
+            MainToDosView(toDoManager: todoManager)
+                .tabItem {
+                    Label("Todos", systemImage: "checkmark.circle.fill")
                 }
-            .sheet(isPresented: $showAddSheet) {
-                NewToDoView(toDosArray: $todoManager.todos)
-            }
-            .alert("Load sample data?", isPresented: $showConfirmAlert) {
-                Button("Load and Replace", role: .destructive) {
-                    todoManager.loadSampleData()
+            
+            HowManyToDosLeftView(toDosManager: todoManager)
+                .tabItem {
+                    Label("To Dos Completed", systemImage: "number.circle")
                 }
-            }
         }
     }
 }
