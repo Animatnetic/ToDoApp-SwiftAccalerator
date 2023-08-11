@@ -11,12 +11,6 @@ struct HowManyToDosLeftView: View {
     @ObservedObject var toDosManager: TodoManager
     @State private var toDosLeft = 0
     
-    var numToDosLeft: Int {
-        toDosManager.todos.filter{!$0.isCompleted}.count
-    }
-    var numToDosCompleted: Int {
-        toDosManager.todos.filter {$0.isCompleted}.count
-    }
     // No need to wrap these 2 vars with @State as they never get updated inside the struct view itself.
     // Also, since we do not update it from this view, it does not need @Bindable
     
@@ -24,14 +18,14 @@ struct HowManyToDosLeftView: View {
         ZStack {
             VStack {
                 Text("You have completed:")
-                Text("\(numToDosCompleted)")
+                Text("\(toDosManager.numToDosCompleted)")
                     .font(.system(size: 150))
                     .fontWeight(.bold)
                     .foregroundColor(.accentColor)
                 
                 Text("You have: ")
                 HStack {
-                    Text("\(numToDosLeft)")
+                    Text("\(toDosManager.numToDosLeft)")
                         .font(.title)
                         .foregroundColor(.accentColor)
                     Text("To Dos left. Well Done!")
