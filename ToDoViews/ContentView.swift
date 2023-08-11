@@ -28,19 +28,20 @@ struct ContentView: View {
                         }
                         .navigationTitle("To Do:")
                         .toolbar {
-                            ToolbarItemGroup(placement: .navigationBarLeading) {
+                            ToolbarItem(placement: .navigationBarLeading) {
                                 EditButton()
                             }
                             
-                            ToolbarItem(placement: .navigationBarTrailing) {
+                            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                                
+                                #if DEBUG
                                 Button {
                                     showConfirmAlert = true
                                 } label: {
                                     Image(systemName: "list.bullet.clipboard.fill")
                                 }
-                            }
-                            
-                            ToolbarItem(placement: .navigationBarTrailing) {
+                                #endif
+                                
                                 Button {
                                     showAddSheet = true
                                 } label: {
