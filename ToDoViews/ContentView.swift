@@ -19,8 +19,8 @@ struct ContentView: View {
         TabView {
             MainToDosView(toDoManager: todoManager)
                 .tabItem {
-                    Label("Todos", systemImage: "checkmark.circle.fill")
-                }
+                    Label("To Dos", systemImage: "checkmark.circle.fill")
+                }.badge(todoManager.numToDosLeft)
             
             HowManyToDosLeftView(toDosManager: todoManager)
                 .tabItem {
