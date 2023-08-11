@@ -14,7 +14,11 @@ class TodoManager: ObservableObject {
             save()
         }
     }
-        
+    
+    func loadSampleData() {
+        todos = ToDo.sampleToDos
+    }
+    
     init() {
         load()
     }

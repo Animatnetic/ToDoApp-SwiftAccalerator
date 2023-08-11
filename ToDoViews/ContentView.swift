@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var todoManager = TodoManager()
-    
 //    @State private var tasks: [ToDo] = [
 //        ToDo(title: "Feed the cats", isCompleted: true),
 //        ToDo(title: "Feed the horses", subtitle: "twice a day"),
@@ -18,6 +17,7 @@ struct ContentView: View {
 //    ]
     
     @State private var showAddSheet = false
+    @State private var showConfirmAlert = false
     
     var body: some View {
         ZStack {
@@ -28,8 +28,16 @@ struct ContentView: View {
                         }
                         .navigationTitle("To Do:")
                         .toolbar {
-                            ToolbarItem(placement: .navigationBarLeading) {
+                            ToolbarItemGroup(placement: .navigationBarLeading) {
                                 EditButton()
+                            }
+                            
+                            ToolbarItem(placement: .navigationBarTrailing) {
+                                Button {
+                                    showConfirmAlert = true
+                                } label: {
+                                    Image(systemName: "list.bullet.clipboard.fill")
+                                }
                             }
                             
                             ToolbarItem(placement: .navigationBarTrailing) {
@@ -42,8 +50,14 @@ struct ContentView: View {
                             }
                         }
                     }
-                }.sheet(isPresented: $showAddSheet) {
-                    NewToDoView(toDosArray: $todoManager.todos)
+                }
+            .sheet(isPresented: $showAddSheet) {
+                NewToDoView(toDosArray: $todoManager.todos)
+            }
+            .alert("Load sample data?", isPresented: $showConfirmAlert) {
+                Button("Load and Replace", role: .destructive) {
+                    todoManager.loadSampleData()
+                }
             }
         }
     }
