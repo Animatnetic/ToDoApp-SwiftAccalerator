@@ -17,8 +17,11 @@ struct MainToDosView: View {
             VStack {
                 NavigationStack {
                     List($toDoManager.todos, editActions: [.all]) { $task in
-                            ToDoView(toDo: $task)
+                            if !task.isCompleted {
+                                ToDoView(toDo: $task)
+                            }
                         }
+                    
                         .navigationTitle("To Do:")
                         .toolbar {
                             ToolbarItem(placement: .navigationBarLeading) {
