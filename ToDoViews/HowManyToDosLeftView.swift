@@ -17,18 +17,18 @@ struct HowManyToDosLeftView: View {
     var body: some View {
         ZStack {
             VStack {
-                Text("You have completed:")
-                Text("\(toDosManager.numToDosCompleted)")
+                Text("You have:")
+                Text("\(toDosManager.numToDosLeft)")
                     .font(.system(size: 150))
                     .fontWeight(.bold)
                     .foregroundColor(.accentColor)
+                Text(toDosManager.numToDosLeft == 1 ? "Todo Left" : "Todos Left")
+                
                 
                 Text("You have: ")
+                    .padding(.top, 40)
                 HStack {
-                    Text("\(toDosManager.numToDosLeft)")
-                        .font(.title)
-                        .foregroundColor(.accentColor)
-                    Text("To Dos left. Well Done!")
+                    Text("You have completed ^[\(toDosManager.numToDosCompleted) todos](inflect: true). Goodjob")
                 }
             }
         }
