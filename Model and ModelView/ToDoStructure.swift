@@ -14,4 +14,5 @@ struct ToDo: Identifiable, Codable { // Making it codable allows it to be encode
     var subtitle: String = ""
     
     var isCompleted: Bool = false
+    var dueDate: Date?  
 }

@@ -19,6 +19,7 @@
 		B5A55A272A78F4D5009F248C /* NewToDoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A55A262A78F4D5009F248C /* NewToDoView.swift */; };
 		B5D175DF2A778C86005082F2 /* ToDoStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D175DE2A778C86005082F2 /* ToDoStructure.swift */; };
 		B5D175E12A779C77005082F2 /* ToDoDetailedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D175E02A779C77005082F2 /* ToDoDetailedView.swift */; };
+		B5D851932A895C00006A17F8 /* nilCoalescingOverload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D851922A895C00006A17F8 /* nilCoalescingOverload.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		B5A55A262A78F4D5009F248C /* NewToDoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewToDoView.swift; sourceTree = "<group>"; };
 		B5D175DE2A778C86005082F2 /* ToDoStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoStructure.swift; sourceTree = "<group>"; };
 		B5D175E02A779C77005082F2 /* ToDoDetailedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoDetailedView.swift; sourceTree = "<group>"; };
+		B5D851922A895C00006A17F8 /* nilCoalescingOverload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nilCoalescingOverload.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				B5D175DE2A778C86005082F2 /* ToDoStructure.swift */,
 				B510B18C2A80C75900DFE113 /* ToDoManager.swift */,
 				B530EA182A84FB8800951C2F /* ToDoStructure+Sample.swift */,
+				B5D851922A895C00006A17F8 /* nilCoalescingOverload.swift */,
 			);
 			path = "Model and ModelView";
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 			files = (
 				B5A55A272A78F4D5009F248C /* NewToDoView.swift in Sources */,
 				B530EA192A84FB8800951C2F /* ToDoStructure+Sample.swift in Sources */,
+				B5D851932A895C00006A17F8 /* nilCoalescingOverload.swift in Sources */,
 				B52084A62A85F57300DFE90F /* MainToDosView.swift in Sources */,
 				B5D175DF2A778C86005082F2 /* ToDoStructure.swift in Sources */,
 				B510B18D2A80C75900DFE113 /* ToDoManager.swift in Sources */,

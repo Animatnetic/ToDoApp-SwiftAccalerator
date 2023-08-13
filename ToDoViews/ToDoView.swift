@@ -26,6 +26,12 @@ struct ToDoView: View {
                             .font(.caption)
                             .foregroundColor(.gray)
                     }
+                    
+                    if let dueDate = toDo.dueDate {
+                        Text("Due: \(dueDate.formatted(.dateTime.day().month().year()))")
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                    }
                 }
                 .strikethrough(toDo.isCompleted)
             }
@@ -40,6 +46,6 @@ struct ToDoView: View {
 
 struct ToDoView_Previews: PreviewProvider {
     static var previews: some View {
-        ToDoView(toDo: .constant(ToDo(title: "Feed the cats")))
+        ToDoView(toDo: .constant(ToDo(title: "Feed the cat", dueDate: Date())))
     }
 }

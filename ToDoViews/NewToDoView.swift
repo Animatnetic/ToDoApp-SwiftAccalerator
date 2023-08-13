@@ -12,6 +12,9 @@ struct NewToDoView: View {
     
     @State private var toDoTitle = ""
     @State private var inputtedSubtitle = ""
+    @State private var dueDate = Date()
+    @State private var isDueDate = false
+    
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
@@ -24,9 +27,20 @@ struct NewToDoView: View {
                         TextField("Subtitle", text: $inputtedSubtitle)
                     }
                     
+                    Section("Date") {
+                        Toggle(isOn: $isDueDate) {
+                            Text("Enable Due date")
+                        }
+                        
+                        if isDueDate {
+                            DatePicker("Due Date", selection: $dueDate, displayedComponents: [.date])
+                                .datePickerStyle(.compact)
+                        }
+                    }
+                    
                     Section("Actions") {
                         Button("Save") {
-                            let newTodo = ToDo(title: toDoTitle, subtitle: inputtedSubtitle)
+                            let newTodo = ToDo(title: toDoTitle, subtitle: inputtedSubtitle, dueDate: isDueDate ? dueDate : nil)
                             
                             if newTodo.title != "" {
                                 toDosArray.append(newTodo)
@@ -44,6 +58,7 @@ struct NewToDoView: View {
         }
     }
 }
+
 
 struct NewToDoView_Previews: PreviewProvider {
     static var previews: some View {
