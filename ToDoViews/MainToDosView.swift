@@ -16,7 +16,7 @@ struct MainToDosView: View {
         ZStack {
             VStack {
                 NavigationStack {
-                    List($toDoManager.todos, editActions: [.all]) { $task in
+                    List(toDoManager.ToDosFiltered, editActions: [.all]) { $task in
                             if !task.isCompleted {
                                 ToDoView(toDo: $task)
                                     .listRowBackground(task.priority == .urgent ? Color.yellow : nil)
@@ -48,7 +48,8 @@ struct MainToDosView: View {
                             }
                         }
                     }
-                }
+            }
+            .searchable(text: $toDoManager.searchTerm)
             .sheet(isPresented: $showAddSheet) {
                 NewToDoView(toDosArray: $toDoManager.todos)
             }
