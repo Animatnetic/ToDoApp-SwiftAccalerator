@@ -21,6 +21,12 @@ struct ToDoDetailedView: View {
                 .font(.title2)
             Toggle("Is Completed?", isOn: $todo.isCompleted)
             
+            Picker("Priority:", selection: $todo.priority) {
+                ForEach(EnumPriority.allCases) { eachCase in
+                    Text(String(describing: eachCase))
+                }
+            }
+            
 
             Section("Date: ") {
                 if !(todo.dueDate == nil){
@@ -31,8 +37,6 @@ struct ToDoDetailedView: View {
                         .onChange(of: includeDate) { newValue in
                             if newValue == false {
                                 todo.dueDate = nil
-                                
-                                print(todo.dueDate)
                             }
                         }
                     
@@ -44,8 +48,6 @@ struct ToDoDetailedView: View {
                         .onChange(of: includeDate) { newValue in
                             if newValue == true {
                                 todo.dueDate = Date.now
-                                
-                                print(todo.dueDate)
                             }
                         }
                 }

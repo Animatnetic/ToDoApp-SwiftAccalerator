@@ -14,6 +14,7 @@ struct NewToDoView: View {
     @State private var inputtedSubtitle = ""
     @State private var dueDate = Date()
     @State private var isDueDate = false
+    @State private var inputtedPriority: EnumPriority = .normal
     
     @Environment(\.dismiss) private var dismiss
     
@@ -25,6 +26,12 @@ struct NewToDoView: View {
                         TextField("Title", text: $toDoTitle)
                             .fontWeight(.heavy)
                         TextField("Subtitle", text: $inputtedSubtitle)
+                        
+                        Picker("Set Priority:", selection: $inputtedPriority) {
+                            ForEach(EnumPriority.allCases) { option in
+                                Text(String(describing: option))
+                            }
+                        }
                     }
                     
                     Section("Date") {
@@ -40,7 +47,7 @@ struct NewToDoView: View {
                     
                     Section("Actions") {
                         Button("Save") {
-                            let newTodo = ToDo(title: toDoTitle, subtitle: inputtedSubtitle, dueDate: isDueDate ? dueDate : nil)
+                            let newTodo = ToDo(title: toDoTitle, subtitle: inputtedSubtitle, dueDate: isDueDate ? dueDate : nil, priority: inputtedPriority)
                             
                             if newTodo.title != "" {
                                 toDosArray.append(newTodo)

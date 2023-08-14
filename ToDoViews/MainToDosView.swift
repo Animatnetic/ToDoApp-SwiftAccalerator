@@ -19,6 +19,7 @@ struct MainToDosView: View {
                     List($toDoManager.todos, editActions: [.all]) { $task in
                             if !task.isCompleted {
                                 ToDoView(toDo: $task)
+                                    .listRowBackground(task.priority == .urgent ? Color.yellow : nil)
                             }
                         }
                     

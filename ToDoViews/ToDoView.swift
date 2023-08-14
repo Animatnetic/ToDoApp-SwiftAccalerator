@@ -46,6 +46,6 @@ struct ToDoView: View {
 
 struct ToDoView_Previews: PreviewProvider {
     static var previews: some View {
-        ToDoView(toDo: .constant(ToDo(title: "Feed the cat", dueDate: Date())))
+        ToDoView(toDo: .constant(ToDo(title: "Feed the cat", dueDate: Date(), priority: .urgent)))
     }
 }
