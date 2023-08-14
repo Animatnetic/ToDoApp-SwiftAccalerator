@@ -23,14 +23,31 @@ struct ToDoDetailedView: View {
             
 
             Section("Date: ") {
-                if !(todo.dueDate == nil) || includeDate {
+                if !(todo.dueDate == nil){
                     Toggle("Include Due Date:", isOn: $includeDate)
+                        .onAppear {
+                            includeDate = true // Not use toggle because there can be inconsistencies between every rendering
+                        }
+                        .onChange(of: includeDate) { newValue in
+                            if newValue == false {
+                                todo.dueDate = nil
+                                
+                                print(todo.dueDate)
+                            }
+                        }
                     
                     // Simply triggers conditional rendering but constant `due date` is actually never used.
                     DatePicker("Due Date:", selection: $todo.dueDate ?? Date.now, displayedComponents: [.date]) // "Date.now" is actually not expected to ever come up but it is just used for initialization due to how strict are data types in swift
                         .datePickerStyle(.compact)
                 } else {
                     Toggle("Include Due Date:", isOn: $includeDate)
+                        .onChange(of: includeDate) { newValue in
+                            if newValue == true {
+                                todo.dueDate = Date.now
+                                
+                                print(todo.dueDate)
+                            }
+                        }
                 }
             }
         }
@@ -40,6 +57,6 @@ struct ToDoDetailedView: View {
 
 struct ToDoDetailedView_Previews: PreviewProvider {
     static var previews: some View {
-        ToDoDetailedView(todo: .constant(ToDo(title: "Feed the cats", subtitle: "They are hungwy", isCompleted: false, dueDate: nil)))
+        ToDoDetailedView(todo: .constant(ToDo(title: "Feed the cats", subtitle: "They are hungwy", isCompleted: false, dueDate: Date.now))) // Because this is a constant, during testin of only this view, it actually will not be visible which is why I need to test it from ContentView
     }
 }
