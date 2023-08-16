@@ -11,6 +11,7 @@ struct ToDoDetailedView: View {
     @Binding var todo: ToDo
     @State private var includeDate = false
     
+    @State private var dummyBoolean: Bool = false
     
     var body: some View {
         Form {
@@ -20,7 +21,17 @@ struct ToDoDetailedView: View {
             
             TextField("Subtitile", text: $todo.subtitle)
                 .font(.title2)
-            Toggle("Is Completed?", isOn: $todo.isCompleted)
+            Toggle("Is Completed?", isOn: $dummyBoolean)
+                .onAppear {
+                    if todo.isCompleted {
+                        dummyBoolean = true
+                    } else {
+                        dummyBoolean = false
+                    }
+                }
+                .onChange(of: dummyBoolean) { newValue in
+                    todo.isCompleted = newValue
+                }
                         
             Picker("Priority:", selection: $todo.priority) {
                 ForEach(EnumPriority.allCases) { eachCase in

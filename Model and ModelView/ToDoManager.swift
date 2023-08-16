@@ -17,40 +17,12 @@ class TodoManager: ObservableObject {
     
     @Published var searchTerm = "" // What they input in the search bar of our MainToDoView
     
-//    var ToDosFiltered: Binding<[ToDo]> {
-//        Binding (
-//            get: {
-//                if self.searchTerm == "" { return self.todos }
-//                return self.todos.filter {
-//                    $0.title.lowercased().contains(self.searchTerm.lowercased())
-//                }
-//            },
-//            set: {
-//                self.todos = $0
-//            }
-//        )
-//    }
-    
-    var CompletedToDosFiltered: Binding<[ToDo]> {
+    var ToDosFiltered: Binding<[ToDo]> {
         Binding (
             get: {
-                if self.searchTerm == "" { return self.todos.filter { $0.isCompleted }}
+                if self.searchTerm == "" { return self.todos }
                 return self.todos.filter {
-                    $0.isCompleted && $0.title.lowercased().contains(self.searchTerm.lowercased())
-                }
-            },
-            set: {
-                self.todos = $0
-            }
-        )
-    }
-    
-    var inCompleteToDosFiltered: Binding<[ToDo]> {
-        Binding (
-            get: {
-                if self.searchTerm == "" { return self.todos.filter { !$0.isCompleted } }
-                return self.todos.filter {
-                    !$0.isCompleted && $0.title.lowercased().contains(self.searchTerm.lowercased())
+                    $0.title.lowercased().contains(self.searchTerm.lowercased())
                 }
             },
             set: {
@@ -70,13 +42,7 @@ class TodoManager: ObservableObject {
         todos.filter {$0.isCompleted}.count
     }
     
-//    var completedToDos: Binding<[ToDo]> {
-//        $todos.filter { $0.isCompleted }
-//    }
-//
-//    var incompleteToDos: Binding<[ToDo]> {
-//        $todos.filter { !$0.isCompleted }
-//    }
+    
     
     init() {
         load()

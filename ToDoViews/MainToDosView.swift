@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct MainToDosView: View {
     @ObservedObject var toDoManager: TodoManager
     @State private var showAddSheet = false
@@ -17,11 +18,11 @@ struct MainToDosView: View {
             VStack {
                 NavigationStack {
                     Section("Incomplete") {
-                        List(toDoManager.inCompleteToDosFiltered, editActions: [.all]) { $task in
-//                                if !task.isCompleted {
+                        List(toDoManager.ToDosFiltered, editActions: [.all]) { $task in
+                                if !task.isCompleted {
                                     ToDoView(toDo: $task)
                                         .listRowBackground(task.priority == .urgent ? Color.yellow : nil)
-//                                }
+                                }
                             }
                         
                             .navigationTitle("To Do:")
@@ -60,10 +61,13 @@ struct MainToDosView: View {
                     }
                     
                     Section("Complete") {
-                        List(toDoManager.CompletedToDosFiltered, editActions: [.all]) { $task in
-                                    ToDoView(toDo: $task)
-                                        .listRowBackground(task.priority == .urgent ? Color.yellow : nil)
+                        List(toDoManager.ToDosFiltered, editActions: [.all]) { $task in
+                            
+                            if task.isCompleted {
+                                ToDoView(toDo: $task)
+                                    .listRowBackground(task.priority == .urgent ? Color.yellow : nil)
                             }
+                        }
                     }
                 }
             }
