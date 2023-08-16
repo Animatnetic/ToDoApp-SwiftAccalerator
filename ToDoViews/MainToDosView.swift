@@ -82,7 +82,7 @@ struct MainToDosView: View {
     
     
     func dueDateOrder() {
-        
+        toDoManager.todos.sort { $0.dueDate ?? Date.now > $1.dueDate ?? Date.now }
     }
 }
 
