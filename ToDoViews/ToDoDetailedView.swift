@@ -11,6 +11,7 @@ struct ToDoDetailedView: View {
     @Binding var todo: ToDo
     @State private var includeDate = false
     
+    
     var body: some View {
         Form {
             TextField("Titile", text: $todo.title)
@@ -20,7 +21,7 @@ struct ToDoDetailedView: View {
             TextField("Subtitile", text: $todo.subtitle)
                 .font(.title2)
             Toggle("Is Completed?", isOn: $todo.isCompleted)
-            
+                        
             Picker("Priority:", selection: $todo.priority) {
                 ForEach(EnumPriority.allCases) { eachCase in
                     Text(String(describing: eachCase))

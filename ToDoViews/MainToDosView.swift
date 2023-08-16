@@ -16,47 +16,56 @@ struct MainToDosView: View {
         ZStack {
             VStack {
                 NavigationStack {
-                    List(toDoManager.ToDosFiltered, editActions: [.all]) { $task in
-                            if !task.isCompleted {
-                                ToDoView(toDo: $task)
-                                    .listRowBackground(task.priority == .urgent ? Color.yellow : nil)
+                    Section("Incomplete") {
+                        List(toDoManager.inCompleteToDosFiltered, editActions: [.all]) { $task in
+//                                if !task.isCompleted {
+                                    ToDoView(toDo: $task)
+                                        .listRowBackground(task.priority == .urgent ? Color.yellow : nil)
+//                                }
                             }
-                        }
-                    
-                        .navigationTitle("To Do:")
-                        .toolbar {
-                            ToolbarItem(placement: .navigationBarLeading) {
-                                EditButton()
-                            }
-                            
-                            ToolbarItemGroup(placement: .navigationBarTrailing) {
-                                
-                                #if DEBUG
-                                Button {
-                                    showConfirmAlert = true
-                                } label: {
-                                    Image(systemName: "list.bullet.clipboard.fill")
-                                }
-                                #endif
-                                
-                                Button {
-                                    showAddSheet = true
-                                } label: {
-                                    Image(systemName: "plus")
-                                        .foregroundColor(.blue)
+                        
+                            .navigationTitle("To Do:")
+                            .toolbar {
+                                ToolbarItem(placement: .navigationBarLeading) {
+                                    EditButton()
                                 }
                                 
-                                Menu {
-                                    Text("Sort by...")
-                                    Button("Priority", action: priorityOrder)
-                                    Button("Title", action: alphabeticalOrder)
-                                    Button("Due Date", action: dueDateOrder)
-                                } label: {
-                                    Image(systemName: "ellipsis.circle")
+                                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                                    
+                                    #if DEBUG
+                                    Button {
+                                        showConfirmAlert = true
+                                    } label: {
+                                        Image(systemName: "list.bullet.clipboard.fill")
+                                    }
+                                    #endif
+                                    
+                                    Button {
+                                        showAddSheet = true
+                                    } label: {
+                                        Image(systemName: "plus")
+                                            .foregroundColor(.blue)
+                                    }
+                                    
+                                    Menu {
+                                        Text("Sort by...")
+                                        Button("Priority", action: priorityOrder)
+                                        Button("Title", action: alphabeticalOrder)
+                                        Button("Due Date", action: dueDateOrder)
+                                    } label: {
+                                        Image(systemName: "ellipsis.circle")
+                                    }
                                 }
-                            }
                         }
                     }
+                    
+                    Section("Complete") {
+                        List(toDoManager.CompletedToDosFiltered, editActions: [.all]) { $task in
+                                    ToDoView(toDo: $task)
+                                        .listRowBackground(task.priority == .urgent ? Color.yellow : nil)
+                            }
+                    }
+                }
             }
             .searchable(text: $toDoManager.searchTerm)
             .sheet(isPresented: $showAddSheet) {
