@@ -45,6 +45,15 @@ struct MainToDosView: View {
                                     Image(systemName: "plus")
                                         .foregroundColor(.blue)
                                 }
+                                
+                                Menu {
+                                    Text("Sort by...")
+                                    Button("Priority", action: priorityOrder)
+                                    Button("Title", action: alphabeticalOrder)
+                                    Button("Due Date", action: dueDateOrder)
+                                } label: {
+                                    Image(systemName: "ellipsis.circle")
+                                }
                             }
                         }
                     }
@@ -59,6 +68,21 @@ struct MainToDosView: View {
                 }
             }
         }
+    }
+    
+    
+    func priorityOrder() {
+        toDoManager.todos.sort { $0.priority > $1.priority }
+    }
+    
+    
+    func alphabeticalOrder() {
+        toDoManager.todos.sort{ $0.title.lowercased() < $1.title.lowercased() }
+    }
+    
+    
+    func dueDateOrder() {
+        
     }
 }
 

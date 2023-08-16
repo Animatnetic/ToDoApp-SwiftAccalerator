@@ -9,10 +9,8 @@ import Foundation
 
 extension ToDo {
     static let sampleToDos = [
-        ToDo(title: "Feed the cat", isCompleted: true),
-        ToDo(title: "Play with cat", subtitle: "Use his favourite String!"),
-        ToDo(title: "Get allergies"),
-        ToDo(title: "Run away from cat"),
-        ToDo(title: "Get a new cat")
+        ToDo(title: "Feed the cats", isCompleted: false),
+        ToDo(title: "Buy cat food", isCompleted: false, priority: .urgent),
+        ToDo(title: "ABC", isCompleted: false, priority: .urgent)
     ]
 }
