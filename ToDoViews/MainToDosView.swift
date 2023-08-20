@@ -56,7 +56,15 @@ struct MainToDosView: View {
                                     } label: {
                                         Image(systemName: "ellipsis.circle")
                                     }
+
+                                    Menu {
+                                        Button("Clear all", action: toDoManager.deleteAllTodos)
+                                        
+                                        Button("Clear done", action: toDoManager.deleteCompletedTodos)
+                                    } label: {
+                                        Image(systemName: "trash")
                                 }
+                            }
                         }
                     }
                     

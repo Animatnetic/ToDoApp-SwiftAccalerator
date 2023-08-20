@@ -43,6 +43,14 @@ class TodoManager: ObservableObject {
     }
     
     
+    func deleteAllTodos() {
+        todos = []
+    }
+    
+    func deleteCompletedTodos() {
+        todos = todos.filter { !$0.isCompleted }
+    }
+    
     
     init() {
         load()
